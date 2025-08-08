@@ -2,23 +2,23 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "quartoCourseBlog",
+    "title": "Here is the website where I’ll be displaying some data regarding the current state of the economy.",
     "section": "",
-    "text": "I can add text here\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMy First post\n\n\n\ngoals\n\ngeneral\n\n\n\n\n\n\n\n\n\nOct 21, 2022\n\n\nMatt Crump\n\n\n\n\n\n\n\n\n\n\n\n\nExample assignment\n\n\n\ngoals\n\ngeneral\n\n\n\n\n\n\n\n\n\nOct 21, 2022\n\n\nMatt Crump\n\n\n\n\n\nNo matching items"
+    "text": "Over the past decade there has been many concerns for the unemployment rates throughout this country."
   },
   {
-    "objectID": "posts/Example_assignment/index.html",
-    "href": "posts/Example_assignment/index.html",
-    "title": "Example assignment",
-    "section": "",
-    "text": "This assignment engages you in the process of introspection. Your task is to use introspection to evaluate and describe your own mental imagery abilities. Attempt to answer the following kinds of questions. What is your mental imagery like? Do you have mental imagery for different kinds of senses? Is your mental imagery vivid and life-like or very different from normal perception? How would you describe your mental imagery?\nYou should write a minimum of 250 words, but feel free to write more. Submit your document on blackboard by the due date."
+    "objectID": "index.html#are-higher-undergrad-tuition-costs-raising-the-unemployment-rates",
+    "href": "index.html#are-higher-undergrad-tuition-costs-raising-the-unemployment-rates",
+    "title": "Here is the website where I’ll be displaying some data regarding the current state of the economy.",
+    "section": "Are higher undergrad tuition costs raising the unemployment rates?",
+    "text": "Are higher undergrad tuition costs raising the unemployment rates?\nI will be analyzing data listed from the costs of undergrad tuition throughout every state within the United States. I will be using this data to support my hypothesis on there being a trend of higher costs of tuition equating to higher unemployment rates."
   },
   {
-    "objectID": "posts/Example_assignment/index.html#my-mental-imagery",
-    "href": "posts/Example_assignment/index.html#my-mental-imagery",
-    "title": "Example assignment",
-    "section": "My mental imagery",
-    "text": "My mental imagery\nMy mental imagery is like…"
+    "objectID": "posts/my_first_post/index.html",
+    "href": "posts/my_first_post/index.html",
+    "title": "My data summary",
+    "section": "",
+    "text": "Introduction: Based on the results of a 2022 study published by the NORC at The University of Chicago, more than half of adults within the United States reported their beliefs that people are not attending college due to its excessive costs. These results seem to raise some concerns and questions regarding what type (if any) impact college tuition costs have had on unemployment rates\nMethods:\nI utilized 2 different data sets, one from the “US Bureau of Labor Statistics”, listing a data set of unemployment rates by state. Additionally, I found a data set from “Kaggle” on the costs of undergrad tuition by state and type of institution. I utilized my filtering and grouping functions only to include the data of “4-year” institutions in my results\nHere is my code.\n\nlibrary(ggplot2)\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ lubridate 1.9.4     ✔ tibble    3.3.0\n✔ purrr     1.1.0     ✔ tidyr     1.3.1\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nunemploymentrates_by_state &lt;- read.csv(\"unemploymentrates.by.state.csv\")\nnces330_20 &lt;- read.csv(\"nces330_20.csv\")\n\nnces330_20$unemployment &lt;- unemploymentrates_by_state[match(nces330_20$State, unemploymentrates_by_state$State), 2]\n\nnces330_20 &lt;- nces330_20 |&gt;\n  filter(\n    Expense == \"Fees/Tuition\" & Length == \"4-year\"\n) \n\nggplot(\n  data = nces330_20,\n  mapping = aes(y = State, x = Value)\n) + stat_summary(\n  fun.min = min,\n  fun.max = max,\n  fun = mean\n)\n\n\n\n\n\n\n\n\nDiscussion:\nThese specific functions grouped both of my data sets together, by adding on columns of the unemployment rates into my “ncess330_20.csv” (undergrad tuition data) data set.\nThe graph shown above displays the “Values”, costs of tuition on the x-axis, with the states being represented on the y-axis. The results displayed on this graph are represented by scale with the dot being farthest to the left if the unemployment rate is low and farthest to the right with higher unemployment rates.\nResults:\nBased on the data displayed in this graph, I can infer that most states typically show midpoint results for unemployment rates. Although, I noticed a very small pattern the states with tuition values that do not exceed 30,000 typically have a slightly lower unemployment rate, while a few states with higher tuition rates have a dot placement on the right side of the median.\n_________________________________________________________________________________\n\nData Separated by Institution Type\n\nnces330_20$unemployment_type &lt;- \"Low\"\nnces330_20[nces330_20$unemployment &gt; 3.85, ]$unemployment_type &lt;- \"High\"\n\nggplot(\n  data = nces330_20,\n  mapping = aes(x = unemployment, y = Value, color = unemployment_type)\n) + geom_point(alpha = 0.5, position = \"jitter\") + facet_wrap(~Type) + geom_smooth(method = \"lm\") + scale_color_manual(values = c(\"Low\" = \"violet\", \"High\" = \"hotpink\"))\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nMethod:\nFor this graph listed above, I created variables called “Low” and “High” to separates the vales of the unemployment with the lowest being 1.8 and the highest being 5.9. I separated these by the median number of 3.85. I created a scatter plot chart using the “ggplot” function and then adding lines, using the “geom_smooth” function. Lastly, I changed the colors of the dots to violet and pink.\nDiscussion:\nIn this graph, I separated the data from my “Type” column, to see the results of unemployment rates based off the “values” (tuition costs) of three types of 4-year institutions that I included. This consists of Public In-State, Public Out-of-state, and Private. Each scatter plot lined up against each other consists of the same variables and numbers for unemployment as well as the tuition costs. The only difference is the type of tuition and the results.\nResults:\nPrivate - The data shown on this chart displays evidence that higher costs of tuition for Private 4-year institutions results to higher rates of unemployment. This is represented as there is a positive line indicating a positive correlation between these factors. The line for the correlations aren’t necessarily “strong” as the data plotted is scattered all over and not very dense along the line.\nPublic In-State - The costs of tuition for Public In-State schools are the lowest of the other two types. It also shows a slightly stronger correlation than the other two as well, but the data for this is shown to be a negative correlation with values at an average of about $10,000.\nPublic Out-of-State - This graphs represents a higher positive correlation for lower unemployment rates with tuition costs, and a slightly lower positive correlation for higher unemployment rates being affect by the tuition cost. I believe this is due to the states original states unemployment rates not being directly affected by higher out of state tuition costs.\nConclusion:\nAs a result of my data, I don’t suppose that all types of 4-year institutions have directly affected the unemployment rates throughout the country, but I do recognize a higher positive correlation with this for specifically Private institutions than the others. Due to there not being an extremely strong correlation, I don’t believe there is relatively enough data that supports my question. I do believe there are other contributing factors that have stronger impacts and higher correlations on the unemployment levels such as the rise in cost of living, companies relying on AI, and lowering of budgets."
   },
   {
     "objectID": "readme.html",
@@ -105,24 +105,10 @@
     "text": "See this growing list of quarto resources for much, much more:\nhttps://github.com/mcanouil/awesome-quarto"
   },
   {
-    "objectID": "posts/my_first_post/index.html",
-    "href": "posts/my_first_post/index.html",
-    "title": "My First post",
-    "section": "",
-    "text": "This is an example first post. Whatever you write here will appear inside your post.\nIt is possible to write lists:\nAnd make headers"
-  },
-  {
-    "objectID": "posts/my_first_post/index.html#this-is-a-second-level-heading",
-    "href": "posts/my_first_post/index.html#this-is-a-second-level-heading",
-    "title": "My First post",
-    "section": "This is a second level heading",
-    "text": "This is a second level heading\nYou can include images, and many other kinds of content.\nIf you are using the visual editor in Rstudio you can drag images onto the editor to insert them into the document. Otherwise, you need to place the image inside of the folder for this post, and then you can insert it to your post directly, like this:\n\nThe first image in a blog post will also be used on the listings page."
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "ABOUT ME",
     "section": "",
-    "text": "The content on this page is from about.qmd. Edit that file to change how this page looks.\n“About” pages are special quarto template pages, with multiple options: https://quarto.org/docs/websites/website-about.html.\nTry changing the template type from jolla to one of the other options for a different look and feel.\nThis is me! mm\nto get outputs, press build then render website"
+    "text": "Hello, my name is Mari, I am currently a sophomore at Dominican University, pursuing a degree in Mathematics with a concentration in finance and actuarial studies.\nI have lots of interest in various aspects of the the economy and finance as there has been a rise in problems regarding economic disparities, high unemployment rates etc.\nMy goal is to make people aware of some of these issues while providing data to represent and allow others to understand these issues.\nI enjoy finding correlations between different subjects and finding out how one impacts another. My goal is to utilize my knowledge and skills in research and computer programming to express my findings on various topics."
   }
 ]

@@ -1,15 +1,18 @@
 ---
-title: "quartoCourseBlog"
+title: "Here is the website where I'll be displaying some data regarding the current state of the economy."
 listing:
   contents: posts
   sort: "date desc"
   type: default
   image-placeholder: "images/logo.png"
-  categories: true
-  sort-ui: false
-  filter-ui: false
-page-layout: full
-title-block-banner: true
 ---
 
-I can add text here
+![](posts/my_first_post/uneploymenteconomy.webp)
+
+------------------------------------------------------------------------
+
+Over the past decade there has been many concerns for the unemployment rates throughout this country.
+
+## **Are higher undergrad tuition costs raising the unemployment rates?**
+
+I will be analyzing data listed from the costs of undergrad tuition throughout every state within the United States. I will be using this data to support my hypothesis on there being a trend of higher costs of tuition equating to higher unemployment rates.
